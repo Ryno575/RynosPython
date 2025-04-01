@@ -22,10 +22,7 @@ six_counter = 0
 reset = True
 
 # Draws the dice
-def drawdice():
-    global wn
-    global turtle1
-    global turtle2
+def drawdice(wn=wn, turtle1=turtle1, turtle2=turtle2):
     wn.clear()
     turtle1 = trtl.Turtle() # Draws dice 1
     turtle1.speed(0)
