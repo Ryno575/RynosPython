@@ -11,9 +11,13 @@ def findChar(origString, char):         # Finds a specific character in the give
     indexes.append("N/A")
   return indexes
 
+"""
+TODO: Finish this function so that the user can find a word in a set of words in a string
+
 def findWord(origString, word):         # Finds the given word in the given string
   print
-  
+"""
+
 def charFrequency(origString):          # Takes every single character in the string and
   charInString = []                     # puts it into a list
   numChars = []
