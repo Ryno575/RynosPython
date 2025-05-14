@@ -11,13 +11,26 @@ def findChar(origString, char):         # Finds a specific character in the give
     indexes.append("N/A")
   return indexes
 
-"""
-TODO: Finish this function so that the user can find a word in a set of words in a string
+# TODO 1: Figure out why it is not getting the second to last word
+def splitString(origString):            # Uses the given string to return the words of the string as a list, and split up by word
+  words = []                          
+  spaces = findChar(origString, " ")
+  for space in range(len(spaces) + 1):
+    if space == 0:                               # If it is the first word -> Start at the beginning, end at first space
+      words.append(origString[0:spaces[space]]) 
+    elif space == len(spaces) - 1:               # If it is the last word -> Start at the last space, end at end of string
+      words.append(origString[spaces[space] + 1:])  
+    else:                   # Otherwise -> Starts at previous space, ends at next space
+      words.append(origString[spaces[space - 1] + 1:spaces[space]])
+  return words                          # Returns the split up words
+  
+def numOfWords(origString):             # Returns the amount of words
+  return len(splitString(origString))
 
+# TODO 2: Set this function up
 def findWord(origString, word):         # Finds the given word in the given string
-  print
-"""
-
+  print("")
+  
 def charFrequency(origString):          # Takes every single character in the string and
   charInString = []                     # puts it into a list
   numChars = []
@@ -56,3 +69,5 @@ print("")
 print("The character '" + userChar + "' appears in the phrase '" + string + "' at: " + str(findChar(string, userChar)))
 print("")
 charFrequency(string)
+print("There are " + str(numOfWords(string)) + " words")
+print(splitString(string))
