@@ -1,4 +1,12 @@
 # Number Guessing
+#### DOES NOT WORK CORRECTLY ####
+#### NEED TO RESTART PROJECT ####
+### Description:
+# Asks the user to enter in a number which will be used for the size of an array
+# The compiler will then make an array with the numbers from 1 - size
+# The user then has 5 guesses to guess the number that was randomly chosen from this array
+# The user can then restart once the user either gets the number or fails to get the number
+###
 import random as rand
 
 # Assigns Variables
@@ -6,24 +14,22 @@ reset = True
 player_score = 0
 games = 0
 duplicates = True
+x = 1
 
 # Defines how many numbers are in list
-def numb_list():
-    global player_number
-    global number_list
-    global x
-    x = 1
+def numb_list(player_number, x):
     number_list = []
     for num in range(player_number):
         number_list.append(x)
         x += 1
-    print(number_list)
+    return number_list, x
 
 
 # Starts the game, player picks amount in number list
 while reset == True:
     player_number = int(input("How many numbers would you like to guess from: "))
-    numb_list()
+    number_list, x = numb_list(player_number, x)
+    print(number_list)
     guess_numbers = []
     turns = 5
 
@@ -41,8 +47,12 @@ while reset == True:
                     guess_numbers.append(player_choice)
                 else:
                     print("Please enter a number in the list!")
+                    print("")
+                    continue
             else:
                 print("Please enter a number in the list!")
+                print("")
+                continue
 
 
 # Loops the player's already guessed numbers to see if there are any duplicates
@@ -53,11 +63,11 @@ while reset == True:
                     duplicates = False # Escapes the loop if there are no duplicates
                 else:
                     duplicates = True
-                    print("You have already guessed this: ", player_choice)
+                    print("You have already guessed this: " + str(player_choice))
                     print("Please choose a new number!")
                     print("")
                     guess_numbers.remove(player_choice) # Continues loop, takes out player's guess from list, does not use a turn
-
+            continue
 # If the player guesses the right number then they win! (skips to line 83)
         if player_choice == number_choice:
             turns = -1
@@ -67,23 +77,23 @@ while reset == True:
         else:
             print("")
             print("Keep Guessing")
-            print("You have guessed: ", sorted(guess_numbers))
+            print("You have guessed: " + str(sorted(guess_numbers)))
             turns = turns - 1
-            print("Turns Remaining: ", turns)
+            print("Turns Remaining: " + str(turns))
             print("")
             duplicates = True
 
 # If they run out of turns -> player loses
     if turns == 0:
         print("You Lose!!")
-        print("The answer was: ", number_choice)
+        print("The answer was: " + str(number_choice))
         print("")
         games += 1
 
 # If they get it right -> player wins, adds a point to player's score 
     else:
         print("You Win!!")
-        print("The answer was: ", number_choice)
+        print("The answer was: " + str(number_choice))
         print("")
         player_score += 1
         games += 1
@@ -95,4 +105,4 @@ while reset == True:
         duplicates = True
     else:
         reset = False
-        print("You won ", player_score, " out of ", games, " games")
+        print("You won " + str(player_score) + " out of " + str(games) + " games")
