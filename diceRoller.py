@@ -1,4 +1,7 @@
-#Dice Rolling
+# Dice Rolling
+### DESCRIPTION ###
+### A program that allows the user to roll two dice as many times as they want while also counting how many dice of each number ###
+### This program also uses the turtle function to draw the two dice so that the user can visually see the dice ###
 import random
 import turtle as trtl
 import time
@@ -392,8 +395,8 @@ while reset == True:
 
         six_counter += 1
 
-    print("Dice 1: ", int(die_numb2))
-    print("Dice 2: ", int(die_numb1))
+    print("Dice 1: " + str(die_numb2))
+    print("Dice 2: " + str(die_numb1))
 
     print("")
     reset = input("Would you like to reset? Y or N: ")
@@ -416,3 +419,4 @@ print("You had: ", six_counter, " sixes!")
 time.sleep(5)
 print("Goodbye!")
 wn.bye()
+
