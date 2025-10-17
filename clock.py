@@ -1,3 +1,6 @@
+### DESCRIPTION ###
+### A program that uses the turtle import to display a clock that shows the current time, as well as updates every second ###
+### This program will also display the time in XX:XX:XX format every second ###
 from time import strftime, localtime
 import time
 import turtle
