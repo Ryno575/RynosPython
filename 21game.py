@@ -1,4 +1,11 @@
-# 21 game
+# 21 Game
+### DESCRIPTION ###
+### Starts by giving the user 2 random cards, numbered 2 - 11 (2, 3, 4, 5, 6, 7, 8, 9, J=10, Q=10, K=10, A=11 [A=1 or 11 after 1st turn]) ###
+### Then asks the user if they would like another card based on the current cards to get as close to, but not over 21, as they can ###
+### Once the user is done picking cards -> the computer picks cards randomly, with a lower chance of picking one the closer it is to 21 ###
+### Once the computer is done picking cards -> the compiler checks between player cards and computer cards to see who got closer to 21 without going over ###
+### Once the compiler is done figuring out who won -> the compiler will assign a win to either the user or computer and then the user can either reset the game or finish to see the stats ###
+#
 import random as rand
 card_choices = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
@@ -23,6 +30,7 @@ while reset == True:
 
 # Asks the player if they would like another card, as long as the total is less than 20
     while more_card == "Y":
+        print("Computer's second card is: " + str(computer_cards[1]) # Shows the user the top card of the computer
         player_cards_total = 0
         # Prints the total number of cards, as well as their values
         for i in range(len(player_cards)):
@@ -162,3 +170,4 @@ print("The computer won: ", computer_score, " games!")
 print("You played: ", total_games, " games!")
 print("")
 print("Goodbye!")
+
