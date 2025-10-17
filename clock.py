@@ -102,24 +102,31 @@ for i in range(60):
     clockTurtle.backward(20)
   clockTurtle.setheading(heading)
 
+### Makes seconds, minutes, and hours not equal to a possible time to make the if statements initally work
 seconds = -1
 minutes = -1
 hours = -1
 while True:
-  if (seconds != int(strftime("%S", localtime()))):
+  if (seconds != int(strftime("%S", localtime()))):     ### Every second it changes the second_hand location
     seconds = int(strftime("%S", localtime()))
     second_hand(seconds)  
-  if (minutes != int(strftime("%M", localtime()))): 
+    
+  if (minutes != int(strftime("%M", localtime()))):     ### Every minute it changes the minute_hand location
     minutes = int(strftime("%M", localtime()))
     minute_hand(minutes, seconds)
-  if (hours != int(strftime("%H", localtime()))):
+    
+  if (hours != int(strftime("%H", localtime()))):       ### Every hour it changes the hour_hand location
     hours = int(strftime("%H", localtime()))
     hour_hand(hours, minutes, seconds)
-  if seconds < 10:
+    
+  if seconds < 10:                                      ### Adds a "0" to the seconds counter (EX: XX:XX:00 or XX:XX:05)
     seconds = "0" + str(seconds)
-  if minutes < 10:
+    
+  if minutes < 10:                                      ### Adds a "0" to the minutes counter (EX: XX:00:XX or XX:09:XX)
     minutes = "0" + str(minutes)
-  if hours < 10:
+    
+  if hours < 10:                                        ### Adds a "0" to the hours counter (EX: 00:XX:XX or 04:XX:XX)
     hours = "0" + str(hours)
-  print(str(hours) + ":" + str(minutes) + ":" + str(seconds))
+    
+  print(str(hours) + ":" + str(minutes) + ":" + str(seconds))     ### Returns the time in the format XX:XX:XX
   time.sleep(1)
