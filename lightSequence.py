@@ -1,3 +1,6 @@
+### DESCRIPTION ###
+### This program allows the user to enter a number 0 - 99 and it will return the 7-segment display of that number using the turtle module
+
 import turtle as trtl
 import time
 
@@ -267,20 +270,20 @@ while (resetFalse == False):
   while True:
     userNum = int(input("Enter a number (0 - 99)"))
     
-    if (userNum == -1):                      # Enters brute force command
+    if (userNum == -1):                             ### ENTERS SECRET BRUTE FORCE MENU
       print("")
       print("*** ENTERING BRUTE FORCE MENU- ***")
       print("")
       userNum = 0
       bruteForce = True
-      break                                   # (skips to line 284)
+      break                                   # (skips to line 289)
     
     if (userNum >= 100 or userNum < 0):  # User number must be between 0 - 99
       print("Please pick a number 0-99")
       continue
     else:
       bruteForce = False
-      break                                   # (skips to line 941 - 1590)
+      break                                   # (skips to line 946 - 1595)
   
   # Enters brute force command only if userNum == -1 and bruteForce == True
   while (userNum > -1 and userNum < 99 and bruteForce == True):
