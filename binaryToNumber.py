@@ -1,4 +1,6 @@
 # Binary to Number
+### DESCRIPTION ###
+### A short program that turns a user's inputted string of 0s and 1s into decimal format ###
 
 def toNum(binaryString):                 ### Turns the number from binary to decimal
     total = 0
