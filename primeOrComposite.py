@@ -1,6 +1,6 @@
-factors = [1]
-prime = True
-prime_composite_mode = False
+factors = [1]  # Starts with 1 as a factor because all integers have 1 as a factor
+prime = True   # All numbers are prime until proven otherwise
+prime_composite_mode = False  # A secret mode that returns all prime or composite numbers between 1 and a number the user inputs
 
 while True:
   try:
@@ -23,13 +23,15 @@ while True:
 
 print("")
 
+# A secret mode that returns all prime or composite numbers between 1 and a number the user inputs
 while prime_composite_mode == True:   # IF user enters -1 then it enters prime/composite mode
   run = False
   storedNumbers = []
+  # A specific menu that only pops up while entering Prime/Composite Mode
   if iteration == 0:
     print("Welcome to Prime/Composite Mode!")
     print("In this mode you can enter a number and it will return all prime or composite numbers between 0 and the entered number")
-    iteration += 1
+    iteration += 1 # Does not show this menu after this point
   prime_or_composite = input("Please enter 'P' for prime or 'C' for composite")
   print("")
   
