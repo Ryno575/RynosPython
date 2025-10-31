@@ -30,7 +30,7 @@ while reset == True:
 
 # Asks the player if they would like another card, as long as the total is less than 20
     while more_card == "Y":
-        print("Computer's second card is: " + str(computer_cards[1]) # Shows the user the top card of the computer
+        print("Computer's second card is: " + str(computer_cards[1])) # Shows the user the top card of the computer
         player_cards_total = 0
         # Prints the total number of cards, as well as their values
         for i in range(len(player_cards)):
@@ -170,4 +170,5 @@ print("The computer won: ", computer_score, " games!")
 print("You played: ", total_games, " games!")
 print("")
 print("Goodbye!")
+
 
