@@ -1,4 +1,9 @@
 ### Number <-> Hex <-> Binary Converter
+### DESCRIPTION ###
+### This is an ongoing project where one day the user will be able to enter a number, binary, and/or hexadecimal set and ###
+### it will take it into this huge conversion machine and return to the user a number, binary and/or hexadecimal set in ###
+### relation to the given set ###
+
 import math
 class Conversion:
     def __init__(self):
