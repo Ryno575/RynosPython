@@ -6,54 +6,53 @@
 
 import math
 class Conversion:
-    def __init__(self):
+    def __init__(self, binaryString, hexString, numberString):
             self.binaryAndHexDictionary = {"0000": "0", "0001": "1", "0010": "2", "0011": "3", 
                                            "0100": "4", "0101": "5", "0110": "6", "0111": "7", 
                                            "1000": "8", "1001": "9", "1010": "A", "1011": "B",
                                            "1100": "C", "1101": "D", "1110": "E", "1111": "F"}
+            self.binaryString = "0b" + str(binaryString)            ## Initalizes overall binaryString that is used in the subclasses
+            self.hexString = "0x" + str(hexString)                  ## Initalizes overall hexString that is used in the subclasses
+            self.numberString = str(numberString)                   ## Initalizes overall numberString that is used in the subclasses
             
     class ToBinary:
-        def __init__(self, numberString, hexString):
-            self.numberString = str(numberString)
-            self.hexString = "0x" + str(hexString)
-        
-        def numToBinary(numberString):                    ### NEED TODO ###
+        def __init__(self, outer_instance):
+            self.outer = outer_instance                              # Points a reference to the outer class Conversion
+
+        def numToBinary(self):                                        ### NEED TODO ###
             return
         
-        def hexToBinary(hexString):                       ### NEED TODO ###
+        def hexToBinary(self):                                        ### NEED TODO ###
             return
 
     class ToNumber:
-        def __init__(self, binaryString, hexString):
-            self.binaryString = "0b" + str(binaryString)
-            self.hexString = "0x" + str(hexString)
+        def __init__(self, outer_instance):
+            self.outer = outer_instance                              # Points a reference to the outer class Conversion
 
-        def binaryToNum(binaryString):
-            total = 0
-            for i in range(1, len(binaryString) + 1):
-                if (int(binaryString[-i]) == 1):
-                    total += 2**(i-1)
-            return total
+        def binaryToNum(self):
+            total = 0                                                # Total = the binary in decimal form
+            for i in range(1, len(self.outer.binaryString) + 1):     # Loops from the right end of the string until left end of the string {from -1 to -(length of binaryString)}
+                if (int(self.outer.binaryString[-i]) == 1):          # If the current index == 1
+                    total += 2**(i-1)                                # Add 2 to the power of (the current index - 1) to the current total {it is i - 1 because we started from 1 -> length of string + 1 in the loop}
+            return total                                             # Return the decimal total to the user
 
-        def hexToNum():                                   ### NEED TODO ###
+        def hexToNum(self):                                            ### NEED TODO ###
             return
 
     class ToHexadecimal:
-        def __init__(self, binaryString, hexString, outer_instance):
-            self.binaryString = "0b" + str(binaryString)
-            self.hexString = "0x" + str(hexString)
-            self.outer = outer_instance
+        def __init__(self, outer_instance):
+            self.outer = outer_instance                              # Points a reference to the outer class Conversion
 
         def binaryToHex(self):
             binarySets = []                                          # This is where the sets of binary strings will be stored
             hexConversion = "0x"                                     # Begins the hex conversion with '0x'
-            self.binaryString = self.binaryString[2:]                # Removes the '0b' from the beginning of the binary string
+            self.outer.binaryString = self.outer.binaryString[2:]                # Removes the '0b' from the beginning of the binary string
             
-            for i in range(int(math.ceil((len(self.binaryString) / 4)))): # Takes the binary string and divides into sections of 4 (ex. '0bXXXXYYYYZZZZ' -> 'XXXX YYYY ZZZZ')
+            for i in range(int(math.ceil((len(self.outer.binaryString) / 4)))): # Takes the binary string and divides into sections of 4 (ex. '0bXXXXYYYYZZZZ' -> 'XXXX YYYY ZZZZ')
                 if i == 0:
-                    currSet = self.binaryString[-4*(i+1):]                    # Starts from the right end and takes the last 4 numbers
+                    currSet = self.outer.binaryString[-4*(i+1):]                    # Starts from the right end and takes the last 4 numbers
                 else:
-                    currSet = self.binaryString[-4*(i+1):i*(-4)]              # Continues on until there the loop reaches the left end
+                    currSet = self.outer.binaryString[-4*(i+1):i*(-4)]              # Continues on until there the loop reaches the left end
                 
                 while len(currSet) != 4:                               ## If any set has less than 4 digits (the leftmost is the most common for this) 
                     currSet = '0' + str(currSet)                         ## then it will add 0s to the front of the set so that it can be read through the dictionary
@@ -65,9 +64,11 @@ class Conversion:
                 
             return hexConversion                                     # Returns the binary to hexadecimal conversion
         
-        def numToHex():                                    ### NEED TODO ###
+        def numToHex(self):                                            ### NEED TODO ###
             return
         
-conv = Conversion()
-toHex = conv.ToHexadecimal("0000000100100011010001010110011110001001101010111100110111101111", "", conv)
-print(toHex.binaryToHex())
+conv = Conversion("00111010", "", "")   # Outermost class (Conversion)
+toHex = conv.ToHexadecimal(conv)        # Inner class (Hex(pointing to Conversion))
+toNum = conv.ToNumber(conv)             # Inner class (Num(pointing to Conversion))
+print(toHex.binaryToHex())              # Runs the function binaryToHex from the ToHexadecimal class 
+print(toNum.binaryToNum())              # Runs the function binaryToNum from the ToNum class
