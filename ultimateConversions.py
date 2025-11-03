@@ -54,8 +54,15 @@ class Conversion:
         def numToBinary(self):                                        ### NEED TODO ###
             return
         
-        def hexToBinary(self):                                        ### NEED TODO ###
-            return
+        def hexToBinary(self):
+          binaryString = "0b"                                          # Initalizes the binary string with '0b'
+          localHexString = self.outer.hexString[2:]                    # Removes the '0x' from the hex string
+          for i in range(len(localHexString)):                         # Iterates through the length of the hex string
+            for key, val in self.outer.binaryAndHexDictionary.items(): # Looks for the keys and values for every item in the dictionary
+              if localHexString[i] == val:                             # Once it finds the correct value -> breaks from the loop and continues to next character
+                binaryString += str(key)                               # Adds the binary set (dictionary key) to the binary string
+                break
+          return self.outer.hexString + " -> " + binaryString          # Returns the conversion from hexadecimal to binary to user
 
     class ToNumber:
         def __init__(self, outer_instance):
@@ -87,8 +94,9 @@ class Conversion:
         def numToHex(self):                                            ### NEED TODO ###
             return
    
-conv = Conversion("10110011", "", "")  # Outermost class (Conversion)
+conv = Conversion("10110011", "B3", "") # Outermost class (Conversion)
 
+toBinary = conv.ToBinary(conv)
 toHex = conv.ToHexadecimal(conv)        # Inner class (Hex(pointing to Conversion))
 toNum = conv.ToNumber(conv)             # Inner class (Num(pointing to Conversion))
 
@@ -96,3 +104,5 @@ print(toHex.binaryToHex())              # Runs the function binaryToHex from the
 conv.setBinaryString("10100101")        # Rewrites binary string as "1010 0101"
 
 print(toNum.binaryToNum())              # Runs the function binaryToNum from the ToNum class
+
+print(toBinary.hexToBinary())           # Runs the function hexToBinary from the ToBinary class
