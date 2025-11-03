@@ -14,6 +14,12 @@ def sortList(origList):           # Sorts the original list from least to greate
     sortedList.append(currNum)
   return sortedList
   
+def reverseList(origList):                # Reverses the list
+  reversedList = []                     
+  for i in range(1, len(origList) + 1):   # Goes through the list from right-end to left-end
+    reversedList.append(origList[-i])     # Adds every iteration of original list into new list
+  return reversedList                  
+  
 def sumList(origList):                    # Returns the total sum of the list
   total = 0
   for i in range(len(origList)):
@@ -40,10 +46,10 @@ def medianList(origList):                 # Returns the median of the list
     median = origList[medianIndex]         # length in 2 and thats the median
   return(median)
 
-def modeList(origList):
-  listedNums = []
-  numFrequency = []
-  maxFrequency = 1
+def modeList(origList):              # This function first creates a linked list between
+  listedNums = []                    # the original list and a frequency list where it
+  numFrequency = []                  # will add 1 to the frequency list if there are
+  maxFrequency = 1                   # multiple copies of a number
   for i in range(len(origList)):
     currNum = origList[i]
     if (currNum not in listedNums):
@@ -56,14 +62,14 @@ def modeList(origList):
           tempNum += 1
           numFrequency[i] = tempNum
   
-  for i in range(len(numFrequency)):
-    currFrequency = numFrequency[i]
-    if maxFrequency < currFrequency:
+  for i in range(len(numFrequency)):  # When the frequency list is finished, it finds the
+    currFrequency = numFrequency[i]   # number with the highest frequency and then pairs
+    if maxFrequency < currFrequency:  # it with the number list
       maxFrequency = currFrequency
       frequencyIndex = i
-  if maxFrequency == 1:
+  if maxFrequency == 1:               # IF the max frequency is 1, then there is no mode
     return "NONE"
-  else:
+  else:                               # Else -> returns the number and how many times it appears
     return (str(listedNums[frequencyIndex]) + " appearing " + str(maxFrequency) + " times")
 
 def drawGraph(origList):
@@ -79,12 +85,16 @@ def drawGraph(origList):
   
 numbers = []
 
-for i in range(rand.randint(10, 100)):
+for i in range(rand.randint(1, 10)):                             # Change these numbers to decide how big the list is
   numbers.append(rand.randint(-100, 100))
 print("Original list: " + str(numbers))
 
 numbers = sortList(numbers)
 print("Sorted list: " + str(numbers))
+
+numbers = reverseList(numbers)
+print("Reversed list: " + str(numbers))
+numbers = reverseList(numbers)
 
 total = sumList(numbers)
 print("Sum: " + str(total))
