@@ -48,16 +48,32 @@ class Spaces:                           ### A class that gets the spaces that wi
     def getSpaceType(self):       # Returns the space type of the current Space object
         return self.spaceType
     
-    class NormalSpace:        ### This subclass controls what the user does on the Normal Space
+class NumberSpace(Spaces):        ### This subclass controls what the user does on the Number Space
+        def __init__(self):
+            self.type = rand.choices(['Even', 'Odd'])
+            self.escapeNumbers = []
+            self.setEscapeNumbers()
+
+        def setEscapeNumbers(self):    ### This function is used in the initalization to set the escape numbers based off of if the space is randomly set as even or odd
+            if self.type == 'Even':    # If the space type is 'Even' -> adds [2, 4, 6, 8, 10, 12] to the escapeNumbers set
+                for i in range(1, 13):
+                    if i % 2 == 0:
+                        self.escapeNumbers.append(i)
+            else:                      # If the space type is 'Odd' -> adds [1, 3, 5, 7, 9, 11] to the escapeNumbers set
+                for i in range(1, 13):
+                     if i % 2 == 1:
+                        self.escapeNumbers.append(i)
+
+        def getEscapeNumbers(self):    ### This function returns the escapeNumbers to the user
+            return self.escapeNumbers
+
+class LoopSpace(Spaces):          ### This subclass controls what the user does on the Loop Space
         pass
 
-    class LoopSpace:          ### This subclass controls what the user does on the Loop Space
+class SkipSpace(Spaces):          ### This subclass controls what the user does on the Skip Space
         pass
 
-    class SkipSpace:          ### This subclass controls what the user does on the Skip Space
-        pass
-
-    class ExitSpace:          ### This subclass controls what the user does on the Exit Space
+class ExitSpace(Spaces):          ### This subclass controls what the user does on the Exit Space
         pass
 
 class Board:
@@ -142,8 +158,8 @@ board = Board(Spaces)
 player1 = Player("A")
 player2 = Player("B")
 game = Game(board, dice)
-print(game.createBoard())
+#print(game.createBoard())
+#print(game.takeTurn(player1))
 
-print(game.takeTurn(player1))
-print(game.takeTurn(player1))
-print(game.takeTurn(player1))
+currSpace = NumberSpace()
+print(currSpace.getEscapeNumbers())
