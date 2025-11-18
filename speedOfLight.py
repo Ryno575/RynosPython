@@ -36,7 +36,7 @@ def calculate_time(distance, speed_of_light=speed_of_light):
     time = balanced_time(time)
     return time                                          # Prints in this format: (Years: #, Days: #, Hours: #, Minutes: #, Seconds: ##.##) 
 
-choice = (input("How far away are you from the light source? Enter a planet name or distance in kilometers: "))
+choice = (input("How far away are you from the light source (ex. The Sun)? Enter a planet name or distance in kilometers: "))
 if choice.lower() in planets:
     for planet, value in planets.items():
         if planet == choice.lower():
