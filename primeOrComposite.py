@@ -1,10 +1,19 @@
+### DESCRIPTION ###
+### This program allows the user to enter any number between 1 and 999,999) ###
+### Once the user enters a valid number then it goes through every number from 2 -> (user's number) ###
+### In this loop it checks to see if each number can be divided into the user's number ###
+### If the number can be divided [(i / (user's number) == X.0) where X is a double that has at least 1 decimal number followed by it] then it adds it to the factors of the user's number list ###
+### Once done with the loop, the compiler will return the list of factors followed by a '|' character for the middle value (ex. [1, 2, | 4, 8] or [1, |3,| 9] for square numbers) 
+### There is also a secret Prime/Composite menu if the user enters -1 instead of a number 1 - 999,999 ###
+### This menu is used to find every Prime or Composite number between 1 and the number the the user chooses ###
+
 factors = [1]  # Starts with 1 as a factor because all integers have 1 as a factor
 prime = True   # All numbers are prime until proven otherwise
 prime_composite_mode = False  # A secret mode that returns all prime or composite numbers between 1 and a number the user inputs
 
 while True:
   try:
-    userNum = int(input("Enter any positive number (Between 0 and 1,000,000):"))
+    userNum = int(input("Enter any positive number (1 - 999,999):"))
     if userNum < -1 or userNum == 0:
       print("Please enter a positive number")
       print("")
