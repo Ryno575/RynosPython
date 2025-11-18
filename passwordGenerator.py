@@ -1,5 +1,7 @@
 # Password Generator
-# Generates a password of character length 15 (can be changed on line 7; [length will always be >= 4]) that has a number, capital letter, and a symbol with characters that are filled in between.
+### DESCRIPTION ###
+### Generates a password of character length 15 (can be changed on line 7; [length will always be >= 4])
+### This password will always have a number, capital letter, and a symbol with random characters that are filled in between
 import random
 characters = []
 symbols = []
